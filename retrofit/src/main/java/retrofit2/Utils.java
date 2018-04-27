@@ -543,7 +543,7 @@ final class Utils {
 
   private static String escapeJSONString(String value) {
     if (value == null || value == "") return value;
-    StringBuilder stringBuilder = new StringBuilder(value);
+    StringBuilder stringBuilder = new StringBuilder();
     int length = value.length();
     for (int i = 0; i < length; i++) {
       char ch = value.charAt(i);
