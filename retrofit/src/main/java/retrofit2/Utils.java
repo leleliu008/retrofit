@@ -548,7 +548,7 @@ final class Utils {
     for (int i = 0; i < length; i++) {
       char ch = value.charAt(i);
       switch (ch) {
-        case '"': stringBuilder.append("\"");break;
+        case '"': stringBuilder.append("\\\"");break;
         case '\\': stringBuilder.append("\\\\");break;
         case '/': stringBuilder.append("\\/");break;
         case '\t': stringBuilder.append("\\t");break;
