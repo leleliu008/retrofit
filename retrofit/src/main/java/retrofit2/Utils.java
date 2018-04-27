@@ -530,7 +530,7 @@ final class Utils {
               || clazz == Boolean.class) {
         jsonStringBuilder.append(value).append(",");
       } else {
-        jsonStringBuilder.append("\"").append(value).append("\"").append(",");
+        jsonStringBuilder.append("\"").append(escapeJSONString(value.toString())).append("\"").append(",");
       }
     }
     String result = jsonStringBuilder.toString();
@@ -539,5 +539,26 @@ final class Utils {
     }
     result += "}";
     return result;
+  }
+
+  private static String escapeJSONString(String value) {
+    if (value == null || value == "") return value;
+    StringBuilder stringBuilder = new StringBuilder(value);
+    int length = value.length();
+    for (int i = 0; i < length; i++) {
+      char ch = value.charAt(i);
+      switch (ch) {
+        case '"': stringBuilder.append("\"");break;
+        case '\\': stringBuilder.append("\\\\");break;
+        case '/': stringBuilder.append("\\/");break;
+        case '\t': stringBuilder.append("\\t");break;
+        case '\r': stringBuilder.append("\\r");break;
+        case '\n': stringBuilder.append("\\n");break;
+        case '\b': stringBuilder.append("\\b");break;
+        case '\f': stringBuilder.append("\\f");break;
+        default: stringBuilder.append(ch);
+      }
+    }
+    return stringBuilder.toString();
   }
 }

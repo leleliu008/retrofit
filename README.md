@@ -1,5 +1,10 @@
 Retrofit
 ========
+这是对Retrofit的扩展，需要使用的话，添加如下依赖：
+```
+api("com.fpliu:retrofit:2.4.0")
+```
+=========================================================
 
 Type-safe HTTP client for Android and Java by Square, Inc.
 
