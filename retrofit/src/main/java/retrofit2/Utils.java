@@ -556,7 +556,14 @@ final class Utils {
         case '\n': stringBuilder.append("\\n");break;
         case '\b': stringBuilder.append("\\b");break;
         case '\f': stringBuilder.append("\\f");break;
-        default: stringBuilder.append(ch);
+        default: {
+          if ((ch >= 0xD800 && ch <= 0xDBFF)
+                  || (ch >= 0xDC00 && ch <= 0xDFFF)) {
+            stringBuilder.append("\\u" + Integer.toHexString(ch));
+          } else {
+            stringBuilder.append(ch);
+          }
+        }
       }
     }
     return stringBuilder.toString();
